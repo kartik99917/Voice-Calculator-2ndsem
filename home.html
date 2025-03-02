@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Voice Calculator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="auth.js"></script> 
+</head>
+<body class="index-background">
+    <div class="container">
+        <div class="logout-container">
+            <button onclick="logout()" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </button>
+        </div>
+
+        <div class="username-display" id="username-display"></div> 
+        <header>
+            <h1>Smart Voice Calculator</h1>
+            <img src="images/logo.png" alt="Smart Voice Calculator Logo" class="logo">
+            <p class="subtitle">Speak your calculations and let the magic happen!</p>
+        </header>
+
+        <div class="control-panel">
+            <button id="start-button">
+                <i class="fas fa-microphone"></i>
+                Start Listening
+            </button>
+        </div>
+
+        <div id="result">
+            Waiting for your voice input...
+        </div>
+
+        <div class="history-section">
+            <div class="history-header">
+                <h2>Calculation History</h2>
+                <button class="clear-history" onclick="clearHistory()">
+                    <i class="fas fa-trash-alt"></i>
+                    Clear History
+                </button>
+            </div>
+            <ul id="history-list">
+            </ul>
+        </div>
+
+        <div class="terms-link">
+            <button class="terms-btn" onclick="window.location.href='terms.html'">
+                Terms and Conditions
+            </button>
+        </div>
+    </div>
+    <script>
+        
+        if (!checkAuth()) {
+            window.location.href = 'index.html';
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

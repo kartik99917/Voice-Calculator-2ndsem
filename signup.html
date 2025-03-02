@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Smart Voice Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="signup-background">
+    <div class="container">
+        <header>
+            <h1>Sign Up</h1>
+            <img src="images/signup.png" alt="Smart Voice Calculator Logo" class="signup1">
+            <p class="subtitle">Create an account to access the calculator.</p>
+        </header>
+        
+        <div class="error" id="error-message"></div>
+
+        <form id="signup-form">
+            <label for="new-username">Username:</label>
+            <input type="text" id="new-username" required>
+
+            <label for="new-email">Email:</label>  
+            <input type="email" id="new-email" required>
+
+            <label for="new-password">Password:</label>
+            <input type="password" id="new-password" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <p class="redirect-text">Already have an account? <a href="index.html">Login here</a>.</p>
+    </div>
+
+    <script src="auth.js"></script>
+    <script>
+        if (checkAuth()) {
+            window.location.href = 'home.html'; 
+        }
+
+        const signupForm = document.getElementById('signup-form');
+        const errorMessage = document.getElementById('error-message');
+
+        signupForm.addEventListener('submit', (event) => {
+            event.preventDefault(); 
+
+        
+            const username = document.getElementById('new-username').value;
+            const email = document.getElementById('new-email').value; 
+            const password = document.getElementById('new-password').value;
+
+            if (register(username, email, password)) {
+                alert('Account created successfully! You can now log in.');
+                signupForm.reset(); // Clear the form
+                window.location.href = 'index.html'; 
+            } else {
+                errorMessage.textContent = 'Username or email already exists!'; 
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Smart Voice Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-background">
+    <div class="container">
+        <header>
+            <h1>Login</h1>
+            <img src="images/login.png" alt="Smart Voice Calculator Logo" class="login1">
+            <p class="subtitle">Enter your credentials to access the calculator.</p>
+        </header>
+        
+        <div class="error" id="error-message"></div>
+
+        <form id="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <p class="forgot-password" onclick="window.location.href='forgot-password.html'">Forgot Password?</p>
+
+        <p class="redirect-text">Don't have an account? <a href="signup.html">Sign up here</a>.</p>
+    </div>
+
+    <script src="auth.js"></script>
+    <script>
+    
+        if (checkAuth()) {
+            window.location.href = 'home.html';
+        }
+
+        const loginForm = document.getElementById('login-form');
+        const errorMessage = document.getElementById('error-message');
+
+        loginForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (login(username, password)) {
+                window.location.href = 'home.html'; 
+            } else {
+                errorMessage.textContent = 'Invalid username or password! Please try again.';
+                errorMessage.style.color = 'red';
+            }
+        });
+    </script>
+
+    <style>
+        .forgot-password {
+            font-size: 1em;
+            color: blue; 
+            cursor: pointer; 
+            text-align: center; 
+            margin-top: 10px;
+        }
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</body>
+</html>
